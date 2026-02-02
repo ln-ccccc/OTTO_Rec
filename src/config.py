@@ -16,7 +16,9 @@ class CFG:
     
     # Co-visitation Logic
     # Number of candidates to recall
-    TOP_N = 50 
+    # 增加候选数量至 100，显著提升召回率上限
+    # 注意：这会使特征文件大小翻倍，训练时间变长，内存占用增加
+    TOP_N = 100 
     
     # Disk Cache
     CACHE_PATH = "./resources/cache"

@@ -2,7 +2,7 @@ import json
 import pickle
 from collections import Counter
 from pathlib import Path
-
+from config import CFG
 from split_utils import load_valid_cutoff
 
 

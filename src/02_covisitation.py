@@ -6,6 +6,10 @@ import json
 from collections import defaultdict, Counter
 from pathlib import Path
 
+""" 构建共现矩阵 """
+
+
+
 def build_click_click(train_path, valid_cutoff, line_limit):
     """构建 Click-Click 矩阵 """
     print("Building Click-Click Matrix...")

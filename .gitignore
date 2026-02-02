@@ -8,6 +8,5 @@ resources/
 # Optional: ignore submission if regenerated
 # submission.csvbrew install git-filter-repo
 
-submission.csv
-sample_submission.csv
 *.csv
+*.zip

@@ -1,5 +1,24 @@
 # OTTO 推荐系统实战
 
+## 0. 环境准备 (Environment Setup)
+
+为确保代码兼容性与复现结果，请使用 `conda` 创建以下环境：
+
+```bash
+# 创建环境 (Python 3.11)
+conda create -n otto python=3.11 -y
+
+# 激活环境
+conda activate otto
+
+# 安装核心依赖
+# pandas, numpy: 数据处理
+# xgboost: 排序模型
+# scikit-learn: 评估指标与工具
+# tqdm: 进度条
+pip install pandas numpy xgboost scikit-learn tqdm
+```
+
 本文档基于 Kaggle OTTO 竞赛的 Candidate ReRank 方案（Chris Deotte 的思路），为您拆解一个完整的、工业级的 Session-based 推荐系统。
 
 本项目采用经典的 **召回 (Recall) + 排序 (Ranking)** 两阶段架构。
@@ -118,13 +137,15 @@
 -   **Group 信息**：XGBoost 做排序时，必须告诉模型哪些样本属于同一个 Query（在这里就是同一个 Session）。
     -   代码中 `groups = df.groupby("session").size().to_numpy()` 就是在做这件事。模型只会比较**同一个 Session 内部**的商品顺序，不会跨 Session 比较。
 
-输出：`resources/xgb_ranker.model`。
+输出：`resources/xgb_click.model`, `resources/xgb_cart.model`, `resources/xgb_order.model`。
 
 ### 2.6 推理与兜底 (Inference & Fallback)
 
 **脚本**: `src/06_inference.py`
 
-- 推理阶段直接逐行读取 `test.jsonl`，对每个 session 生成候选并批量送入模型打分。\n- 如果候选为空（极少见），使用“全局 Top20 热门商品”兜底，避免出现空 labels。\n- 输出：`submission.csv`。
+- 推理阶段直接逐行读取 `test.jsonl`，对每个 session 生成候选并批量送入对应的模型（Click/Cart/Order）打分。
+- 如果候选为空（极少见），使用“全局 Top20 热门商品”兜底，避免出现空 labels。
+- 输出：`submission.csv`。
 
 ---
 

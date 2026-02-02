@@ -2,6 +2,10 @@ import json
 from config import CFG
 from pathlib import Path
 
+"""
+预处理训练数据，计算验证集的截止时间戳。
+"""
+
 def preprocess():
     print("Processing Train Data...")
     
