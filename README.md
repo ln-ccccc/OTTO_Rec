@@ -1,4 +1,4 @@
-# OTTO 推荐系统实战指南：从入门到工业级 Pipeline
+# OTTO 推荐系统实战
 
 本文档基于 Kaggle OTTO 竞赛的 Candidate ReRank 方案（Chris Deotte 的思路），为您拆解一个完整的、工业级的 Session-based 推荐系统。
 
