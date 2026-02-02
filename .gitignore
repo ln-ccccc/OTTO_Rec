@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Data files (if large)
+data/
+resources/
+
+# Optional: ignore submission if regenerated
+# submission.csvbrew install git-filter-repo
+
+submission.csv
+sample_submission.csv
+*.csv
