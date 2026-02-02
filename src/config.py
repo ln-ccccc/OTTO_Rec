@@ -21,6 +21,7 @@ class CFG:
     TOP_N = 100 
     
     # Disk Cache
+    
     CACHE_PATH = "./resources/cache"
     
     os.makedirs(PROCESSED_DATA_PATH, exist_ok=True)
