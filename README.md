@@ -10,17 +10,6 @@
 
 ## 1. 项目架构概览
 
-```mermaid
-graph LR
-    A[原始日志 JSONL] --> B(数据预处理 ETL);
-    B --> C{召回阶段 Recall};
-    C -->|i2i 共现矩阵| D[候选集生成 Candidates];
-    B --> E[特征工程 Features];
-    D --> E;
-    E --> F[排序模型 Ranking (XGBoost)];
-    F --> G[最终预测 Submission];
-```
-
 ### 核心模块说明
 
 1. **数据预处理**: 清洗数据，划分训练集/验证集。
@@ -130,22 +119,22 @@ graph LR
 
 ---
 
-## 3. 进阶学习路线 (致准算法工程师)
+## 3. 进阶路线 
 
 如果你想在面试中脱颖而出，建议基于此 Pipeline 尝试以下改进：
 
-### 🌟 召回层 (Recall) 升级
+###  召回层 (Recall) 升级
 
 - **Swing 算法**: 相比简单的共现，Swing 考虑了 User-Item-User 的结构，能消除“小圈子”噪音。
 - **Embedding**: 使用 Word2Vec (Item2Vec) 训练商品向量，通过向量相似度召回（Faiss）。
 - **Graph**: 尝试 DeepWalk 或 Node2Vec 图算法。
 
-### 🌟 排序层 (Ranking) 升级
+###  排序层 (Ranking) 升级
 
 - **深度学习**: 尝试用 DeepFM 或 DIN (Deep Interest Network) 替换 XGBoost。
 - **多目标学习 (Multi-task)**: 同时预测 Click、Cart、Order 三个目标。
 
-### 🌟 工程优化
+###  工程优化
 
 - **数据 IO**: 在保证不漏读的前提下，引入 parquet + 校验机制（session 数/文件 hash/版本号）。\n- **并行与缓存**: 对 item_pop、covisitation、候选结果做缓存，减少重复扫描 JSONL。\n- **GPU/加速**: 学习使用 cuDF / Faiss / RAPIDS 进行大规模加速。
 - **增量学习**: 思考如何处理实时流入的新数据。
