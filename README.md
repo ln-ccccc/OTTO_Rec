@@ -19,7 +19,7 @@ conda activate otto
 pip install pandas numpy xgboost scikit-learn tqdm
 ```
 
-本文档基于 Kaggle OTTO 竞赛的 Candidate ReRank 方案（Chris Deotte 的思路），为您拆解一个完整的、工业级的 Session-based 推荐系统。
+本文档基于 Kaggle OTTO 竞赛的一个完整的 Session-based 推荐系统。
 
 本项目采用经典的 **召回 (Recall) + 排序 (Ranking)** 两阶段架构。
 
